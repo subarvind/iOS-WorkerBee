@@ -35,6 +35,10 @@
 		27CB6577143BAA2F00EEA1F2 /* BeeTestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */; };
 		27DB17F2143BB3A800EBA619 /* little_pluses.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F1143BB3A800EBA619 /* little_pluses.png */; };
 		27DB17F5143BD36A00EBA619 /* double_lined.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F4143BD36A00EBA619 /* double_lined.png */; };
+		7435F8DF14475469000C5C45 /* DocumentOperationsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7435F8DE14475469000C5C45 /* DocumentOperationsTest.m */; };
+		7435F8E31447547F000C5C45 /* ContinuousReplicationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7435F8E21447547F000C5C45 /* ContinuousReplicationTest.m */; };
+		7435F8E61447548D000C5C45 /* SimpleReplicationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7435F8E51447548D000C5C45 /* SimpleReplicationTest.m */; };
+		7435F8E9144754A8000C5C45 /* FilteredReplicationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7435F8E8144754A8000C5C45 /* FilteredReplicationTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +84,14 @@
 		27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeeTestController.xib; sourceTree = "<group>"; };
 		27DB17F1143BB3A800EBA619 /* little_pluses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = little_pluses.png; path = ../App/little_pluses.png; sourceTree = "<group>"; };
 		27DB17F4143BD36A00EBA619 /* double_lined.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = double_lined.png; path = ../App/double_lined.png; sourceTree = "<group>"; };
+		7435F8DD14475469000C5C45 /* DocumentOperationsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentOperationsTest.h; sourceTree = "<group>"; };
+		7435F8DE14475469000C5C45 /* DocumentOperationsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentOperationsTest.m; sourceTree = "<group>"; };
+		7435F8E11447547F000C5C45 /* ContinuousReplicationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinuousReplicationTest.h; sourceTree = "<group>"; };
+		7435F8E21447547F000C5C45 /* ContinuousReplicationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinuousReplicationTest.m; sourceTree = "<group>"; };
+		7435F8E41447548D000C5C45 /* SimpleReplicationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleReplicationTest.h; sourceTree = "<group>"; };
+		7435F8E51447548D000C5C45 /* SimpleReplicationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleReplicationTest.m; sourceTree = "<group>"; };
+		7435F8E7144754A8000C5C45 /* FilteredReplicationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredReplicationTest.h; sourceTree = "<group>"; };
+		7435F8E8144754A8000C5C45 /* FilteredReplicationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredReplicationTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +205,14 @@
 				27A0748B143CDE6B0043BEB6 /* CreateDocsTest.m */,
 				27170A491444E4020049E6E4 /* CouchbaseStartupTest.h */,
 				27170A4A1444E4020049E6E4 /* CouchbaseStartupTest.m */,
+				7435F8DD14475469000C5C45 /* DocumentOperationsTest.h */,
+				7435F8DE14475469000C5C45 /* DocumentOperationsTest.m */,
+				7435F8E11447547F000C5C45 /* ContinuousReplicationTest.h */,
+				7435F8E21447547F000C5C45 /* ContinuousReplicationTest.m */,
+				7435F8E41447548D000C5C45 /* SimpleReplicationTest.h */,
+				7435F8E51447548D000C5C45 /* SimpleReplicationTest.m */,
+				7435F8E7144754A8000C5C45 /* FilteredReplicationTest.h */,
+				7435F8E8144754A8000C5C45 /* FilteredReplicationTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -278,6 +298,10 @@
 				27A0748C143CDE6B0043BEB6 /* CreateDocsTest.m in Sources */,
 				270EA1ED1443C1AD0000AEA9 /* SavedTestRun.m in Sources */,
 				27170A4B1444E4020049E6E4 /* CouchbaseStartupTest.m in Sources */,
+				7435F8DF14475469000C5C45 /* DocumentOperationsTest.m in Sources */,
+				7435F8E31447547F000C5C45 /* ContinuousReplicationTest.m in Sources */,
+				7435F8E61447548D000C5C45 /* SimpleReplicationTest.m in Sources */,
+				7435F8E9144754A8000C5C45 /* FilteredReplicationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
