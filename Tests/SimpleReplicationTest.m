@@ -8,6 +8,8 @@
 
 #import "SimpleReplicationTest.h"
 
+//NSString* remotedb = @"http://admin:northscale!23@ec2-50-16-117-7.compute-1.amazonaws.com:5984/ios-tests";
+
 @implementation SimpleReplicationTest
 
 {

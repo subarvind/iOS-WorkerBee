@@ -8,6 +8,7 @@
 
 #import "DocumentOperationsTest.h"
 #define kDocumentBatchSize 100
+NSString *remotedb = @"http://sidius.iriscouch.com/test"; 
 @implementation DocumentOperationsTest
 
 {
@@ -49,7 +50,7 @@
     }
     
     CouchPersistentReplication* rep;
-    rep = [self.database replicationToDatabaseAtURL:[NSURL URLWithString:@"http://sidius.iriscouch.com/test"]];
+    rep = [self.database replicationToDatabaseAtURL:[NSURL URLWithString:remotedb]];
     
 }
 
