@@ -22,9 +22,11 @@
     if (self.suspended)
         return;
     
+    double teststart = CFAbsoluteTimeGetCurrent();
     CouchPersistentReplication* rep;
-    rep = [self.database replicationFromDatabaseAtURL:[NSURL URLWithString:@"http://admin:northscale!23@ec2-50-16-117-7.compute-1.amazonaws.com:5984/ios-tests"]];
-    
+    rep = [self.database replicationFromDatabaseAtURL:[NSURL URLWithString:@"http://farshid:farshid@single.couchbase.net/appcast"]];
+    double testend = CFAbsoluteTimeGetCurrent();
+    NSLog(@"Simple Replication took: %f seconds", (testend - teststart));
 }
 
 

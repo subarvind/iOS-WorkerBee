@@ -7,7 +7,7 @@
 //
 
 #import "ContinuousReplicationTest.h"
-#define kDocumentsize 500
+#define kDocumentsize 10000
 //NSString *remotedb = @"http://farshid:farshid@single.couchbase.net/bitcoin";
 
 @implementation ContinuousReplicationTest
@@ -22,16 +22,22 @@
     if (self.suspended)
         return;
     double teststart = CFAbsoluteTimeGetCurrent();
+    //double teststartall = CFAbsoluteTimeGetCurrent();
     double wait = 60;
     do {
         CouchReplication *op;
         op = [self.database pullFromDatabaseAtURL:[NSURL URLWithString:@"http://farshid:farshid@single.couchbase.net/bitcoin"] options:kCouchReplicationContinuous];
     } while ([self.database getDocumentCount] < kDocumentsize);
+    double testend = CFAbsoluteTimeGetCurrent();
+    NSLog(@"Continuous Replication took: %f seconds",(testend - teststart));
     
     if (CFAbsoluteTimeGetCurrent() - teststart >= wait){    //replication runs for 60 seconds at intervals of 600 seconds 
+        double compactstart = CFAbsoluteTimeGetCurrent(); 
         RESTOperation *com;
         com = [self.database compact];
         [NSThread sleepForTimeInterval:600];
+        double compactend = CFAbsoluteTimeGetCurrent();
+        NSLog(@"Compaction takes: %f seconds",(compactend - compactstart));
     }
     
 }

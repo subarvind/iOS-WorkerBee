@@ -20,17 +20,20 @@ CouchPersistentReplication* _push;
 - (void) heartbeat {
     if (self.suspended)
         return;
+    double teststart = CFAbsoluteTimeGetCurrent();
     // Create a CouchDB 'view' containing list items sorted by date:
     CouchDesignDocument* design = [self.database designDocumentWithName: @"test"];
     [design defineViewNamed: @"byDate"
-                        map: @"function(doc) {if (doc.created_at) emit(doc.created_at, doc);}"];
+                        map: @"function(doc) {if (doc.date) emit(doc.date, doc);}"];
     CouchLiveQuery* query = [[design queryViewNamed: @"byDate"] asLiveQuery];
     query.descending = YES;  // Sort by descending date, i.e. newest items first
-    NSArray *repls = [self.database replicateWithURL:[NSURL URLWithString:@"http://farshid:farshid@single.couchbase.net/bitcoin"] exclusively:YES];
-    _pull = [[repls objectAtIndex: 0] retain];
-    _push = [[repls objectAtIndex: 1] retain];
-    [_pull addObserver: self forKeyPath: @"completed" options: 0 context: NULL];
-    [_push addObserver: self forKeyPath: @"completed" options: 0 context: NULL];   
+    CouchPersistentReplication* rep;
+    rep = [self.database replicationFromDatabaseAtURL:[NSURL URLWithString:@"http://farshid:farshid@single.couchbase.net/bitcoin"]];
+    [rep addObserver:self forKeyPath:@"completed" options:0 context:NULL];
+    
+    
+    double testend = CFAbsoluteTimeGetCurrent();
+    NSLog(@"Filtered Replication took: %f seconds",(testend - teststart));
 }
 
 

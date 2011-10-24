@@ -8,8 +8,8 @@
 
 #import "CreateDocsTest.h"
 
-#define kDocumentBatchSize 100
-double updateduration = 10;
+#define kDocumentBatchSize 10000
+double updateduration = 100;
 
 @implementation CreateDocsTest
 {
@@ -71,7 +71,7 @@ double updateduration = 10;
             }];             
             
         }
-        NSLog(@"time is: %f", CFAbsoluteTimeGetCurrent());
+        // NSLog(@"time is: %f", CFAbsoluteTimeGetCurrent());
     }
     
     for (int j=0; j<(kDocumentBatchSize/10); j++) { //change attachment content
@@ -98,31 +98,31 @@ double updateduration = 10;
     }
     
     //add back del docs
-       for (int k=0; k<(kDocumentBatchSize/10); k++) {
-           NSString* dateStr = [RESTBody JSONObjectWithDate: [NSDate date]];
-           CFUUIDRef uuid = CFUUIDCreate(nil);
-           NSString *guid = (NSString*)CFUUIDCreateString(nil, uuid);
-           CFRelease(uuid);
-           NSString *docId = [NSString stringWithFormat:@"%@-%@", dateStr, guid];
-           //NSLog(@"added %i", _sequence);
-           [guid release];
-           NSDictionary* props = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSNumber numberWithInt: k], @"sequence",
-                                  dateStr, @"date", nil];
-           CouchDocument* doc = [self.database documentWithID:docId];
-           RESTOperation* op;
-           op = [doc putProperties: props];
-           NSString *thePath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"png"];   
-           UIImage *prodImg = [[UIImage alloc] initWithContentsOfFile:thePath]; 
-           CouchAttachment *attach = [doc.currentRevision createAttachmentWithName:@"photo" type:@"image/jpeg"];
-           op = [attach PUT: UIImagePNGRepresentation(prodImg) contentType: @"image/jpeg"];
-           [op onCompletion: ^{
-               if (op.error) {
-                   [self logFormat: @"!!! Failed to create doc %@", props];
-                   self.error = op.error;
-               }
-           }];
-       }
+    for (int k=0; k<(kDocumentBatchSize/10); k++) {
+        NSString* dateStr = [RESTBody JSONObjectWithDate: [NSDate date]];
+        CFUUIDRef uuid = CFUUIDCreate(nil);
+        NSString *guid = (NSString*)CFUUIDCreateString(nil, uuid);
+        CFRelease(uuid);
+        NSString *docId = [NSString stringWithFormat:@"%@-%@", dateStr, guid];
+        //NSLog(@"added %i", _sequence);
+        [guid release];
+        NSDictionary* props = [NSDictionary dictionaryWithObjectsAndKeys:
+                               [NSNumber numberWithInt: k], @"sequence",
+                               dateStr, @"date", nil];
+        CouchDocument* doc = [self.database documentWithID:docId];
+        RESTOperation* op;
+        op = [doc putProperties: props];
+        NSString *thePath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"png"];   
+        UIImage *prodImg = [[UIImage alloc] initWithContentsOfFile:thePath]; 
+        CouchAttachment *attach = [doc.currentRevision createAttachmentWithName:@"photo" type:@"image/jpeg"];
+        op = [attach PUT: UIImagePNGRepresentation(prodImg) contentType: @"image/jpeg"];
+        [op onCompletion: ^{
+            if (op.error) {
+                [self logFormat: @"!!! Failed to create doc %@", props];
+                self.error = op.error;
+            }
+        }];
+    }
     
     
     
@@ -143,7 +143,7 @@ double updateduration = 10;
     // Create a CouchDB 'view' containing list items sorted by date:
     CouchDesignDocument* design = [self.database designDocumentWithName: @"test"];
     [design defineViewNamed: @"byDate"
-                        map: @"function(doc) {if (doc.created_at) emit(doc.created_at, doc);}"];
+                        map: @"function(doc) {if (doc.date) emit(doc.date, doc);}"];
     CouchLiveQuery* query = [[design queryViewNamed: @"byDate"] asLiveQuery];
     query.descending = YES;  // Sort by descending date, i.e. newest items first
 }
