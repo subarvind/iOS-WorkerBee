@@ -6,8 +6,17 @@
 //  Copyright 2011 Couchbase, Inc. All rights reserved.
 //
 
-#import "DocumentOperationsTest.h"
-#define kDocumentBatchSize 100
+
+#import "BeeCouchTest.h"
+#import "AppDelegate.h"
+
+@interface DocumentOperationsTest : BeeCouchTest
+
+@end
+
+
+
+#define kDocumentBatchSize 10000
 NSString *remotedb = @"http://sidius.iriscouch.com/test"; 
 @implementation DocumentOperationsTest
 

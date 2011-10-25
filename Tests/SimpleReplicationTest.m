@@ -5,8 +5,12 @@
 //  Created by Arvind on 10/13/11.
 //  Copyright 2011 Couchbase, Inc. All rights reserved.
 //
+#import "BeeCouchTest.h"
+#import "AppDelegate.h"
 
-#import "SimpleReplicationTest.h"
+@interface SimpleReplicationTest : BeeCouchTest
+@end
+
 
 //NSString* remotedb = @"http://admin:northscale!23@ec2-50-16-117-7.compute-1.amazonaws.com:5984/ios-tests";
 

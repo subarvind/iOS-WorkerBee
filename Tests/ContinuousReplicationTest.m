@@ -6,7 +6,14 @@
 //  Copyright 2011 Couchbase, Inc. All rights reserved.
 //
 
-#import "ContinuousReplicationTest.h"
+#import "BeeCouchTest.h"
+#import "AppDelegate.h"
+
+@interface ContinuousReplicationTest : BeeCouchTest
+
+@end
+
+
 #define kDocumentsize 10000
 //NSString *remotedb = @"http://farshid:farshid@single.couchbase.net/bitcoin";
 
