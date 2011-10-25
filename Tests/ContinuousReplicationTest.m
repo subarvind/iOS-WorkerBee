@@ -33,7 +33,7 @@
     double wait = 60;
     do {
         CouchReplication *op;
-        op = [self.database pullFromDatabaseAtURL:[NSURL URLWithString:@"http://farshid:farshid@single.couchbase.net/bitcoin"] options:kCouchReplicationContinuous];
+        op = [self.database pullFromDatabaseAtURL:[NSURL URLWithString:@"http://subarvind:stein*#*@ec2-50-16-117-7.compute-1.amazonaws.com:5984/ipaddr"] options:kCouchReplicationContinuous];
     } while ([self.database getDocumentCount] < kDocumentsize);
     double testend = CFAbsoluteTimeGetCurrent();
     NSLog(@"Continuous Replication took: %f seconds",(testend - teststart));

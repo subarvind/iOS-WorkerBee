@@ -29,12 +29,12 @@ CouchPersistentReplication* _push;
     double teststart = CFAbsoluteTimeGetCurrent();
     // Create a CouchDB 'view' containing list items sorted by date:
     CouchDesignDocument* design = [self.database designDocumentWithName: @"test"];
-    [design defineViewNamed: @"byDate"
-                        map: @"function(doc) {if (doc.date) emit(doc.date, doc);}"];
+    [design defineViewNamed: @"byLongitude"
+                        map: @"function(doc) {if (doc.longitude) emit(doc.longitude, doc);}"];
     CouchLiveQuery* query = [[design queryViewNamed: @"byDate"] asLiveQuery];
     query.descending = YES;  // Sort by descending date, i.e. newest items first
     CouchPersistentReplication* rep;
-    rep = [self.database replicationFromDatabaseAtURL:[NSURL URLWithString:@"http://sidius.iriscouch.com/test"]];
+    rep = [self.database replicationFromDatabaseAtURL:[NSURL URLWithString:@"http://subarvind:stein*#*@ec2-50-16-117-7.compute-1.amazonaws.com:5984/ipaddr"]];
     [rep addObserver:self forKeyPath:@"completed" options:0 context:NULL];
     
     
@@ -54,10 +54,11 @@ CouchPersistentReplication* _push;
             //NSLog(@"added %i", _sequence);
             [guid release];
             NSString* changedName = [change objectForKey:NSKeyValueChangeNewKey];
+            NSLog(@"THE CHANGED NAME IS: %@", changedName);
             NSDictionary* props = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithInt: _sequence], @"sequence",
-                                   [NSString stringWithFormat:changedName],@"nameupdate",
-                                   dateStr, @"date", nil];
+                                   [NSString stringWithFormat:changedName],@"nameupdate", nil];
+            
+            NSLog(@"THE DICTIONARY TO BE UPDATED IS: %@", props);
             CouchDocument* doc = [self.database documentWithID:docId];
             RESTOperation* op = [doc putProperties: props];
             [op onCompletion: ^{
